@@ -12,13 +12,18 @@ public class ActivationService : IActivationService
     private readonly ActivationHandler<LaunchActivatedEventArgs> _defaultHandler;
     private readonly IEnumerable<IActivationHandler> _activationHandlers;
     private readonly IThemeSelectorService _themeSelectorService;
+    private readonly ISessionService _sessionService;
     private UIElement? _shell = null;
 
-    public ActivationService(ActivationHandler<LaunchActivatedEventArgs> defaultHandler, IEnumerable<IActivationHandler> activationHandlers, IThemeSelectorService themeSelectorService)
+    public ActivationService(ActivationHandler<LaunchActivatedEventArgs> defaultHandler, 
+        IEnumerable<IActivationHandler> activationHandlers, 
+        IThemeSelectorService themeSelectorService,
+        ISessionService sessionService)
     {
         _defaultHandler = defaultHandler;
         _activationHandlers = activationHandlers;
         _themeSelectorService = themeSelectorService;
+        _sessionService = sessionService;
     }
 
     public async Task ActivateAsync(object activationArgs)
@@ -29,7 +34,7 @@ public class ActivationService : IActivationService
         // Set the MainWindow Content.
         if (App.MainWindow.Content == null)
         {
-            _shell = App.GetService<ShellPage>();
+            _shell =_sessionService.IsAuthenticated ? App.GetService<ShellPage>() : App.GetService<LoginPage>();
             App.MainWindow.Content = _shell ?? new Frame();
         }
 
@@ -38,7 +43,14 @@ public class ActivationService : IActivationService
 
         // Activate the MainWindow.
         App.MainWindow.Activate();
-
+        if (_sessionService.IsAuthenticated)
+            ;
+        else
+        {
+            App.MainWindow.SetWindowSize(400, 250);
+            App.MainWindow.IsMaximizable = false;
+            App.MainWindow.CenterOnScreen();
+        }
         // Execute tasks after activation.
         await StartupAsync();
     }

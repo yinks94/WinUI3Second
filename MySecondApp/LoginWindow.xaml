@@ -1,14 +1,15 @@
-﻿<windowex:WindowEx
-    x:Class="MySecondApp.MainWindow"
+<?xml version="1.0" encoding="utf-8"?>
+<windowex:WindowEx
+    x:Class="MySecondApp.LoginWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MySecondApp"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:windowex="using:WinUIEx"
-    MinWidth="100"
-    MinHeight="100"
-    PersistenceId="MainWindow"
+    MinWidth="400"
+    MinHeight="300"
+    PersistenceId="LoginWindow"
     mc:Ignorable="d">
     <Window.SystemBackdrop>
         <MicaBackdrop/>

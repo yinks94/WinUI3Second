@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.UI.Xaml;
+
 using MySecondApp.Activation;
 using MySecondApp.Contracts.Services;
 using MySecondApp.Core.Contracts.Services;
@@ -10,6 +11,7 @@ using MySecondApp.Models;
 using MySecondApp.Services;
 using MySecondApp.ViewModels;
 using MySecondApp.Views;
+
 using Windows.Gaming.Input;
 
 namespace MySecondApp;
@@ -72,6 +74,7 @@ public partial class App : Application
                 services.AddSingleton<IActivationService, ActivationService>();
                 services.AddSingleton<IPageService, PageService>();
                 services.AddSingleton<INavigationService, NavigationService>();
+                services.AddSingleton<ISessionService, SessionService>();
 
                 // Core Services
                 services.AddSingleton<ISampleDataService, SampleDataService>();
@@ -92,6 +95,8 @@ public partial class App : Application
                 services.AddTransient<MainPage>();
                 services.AddTransient<ShellPage>();
                 services.AddTransient<ShellViewModel>();
+                services.AddTransient<LoginPage>();
+                services.AddTransient<LoginViewModel>();
 
                 // Configuration
                 services.Configure<LocalSettingsOptions>(context.Configuration.GetSection(nameof(LocalSettingsOptions)));

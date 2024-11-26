@@ -20,6 +20,7 @@ public class PageService : IPageService
         Configure<GridContentDetailViewModel, GridContentDetailPage>();
         Configure<DataTableViewModel, DataTablePage>();
         Configure<SettingsViewModel, SettingsPage>();
+        Configure<LoginViewModel, LoginPage>();
     }
 
     public Type GetPageType(string key)
