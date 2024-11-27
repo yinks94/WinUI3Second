@@ -8,6 +8,18 @@
     xmlns:behaviors="using:MySecondApp.Behaviors"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     Loaded="OnLoaded">
+    <Page.Resources>
+        <Style x:Key="TileGridStyle" TargetType="Grid">
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="5" />
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Background" Value="{ThemeResource AccentFillColorDefaultBrush}"/>
+        </Style>
+        <Style x:Key="HeaderTextStyle" TargetType="TextBlock" BasedOn="{StaticResource TitleTextBlockStyle}">
+            <Setter Property="Foreground" Value ="WhiteSmoke"/>
+            <Setter Property="Margin" Value="5, -2, 0, 0"/>
+        </Style>
+    </Page.Resources>
 
     <Grid>
         <Grid x:Name="AppTitleBar"
@@ -33,6 +45,7 @@
             SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
             IsSettingsVisible="True"
             ExpandedModeThresholdWidth="1024"
+            OpenPaneLength="200"
             DisplayModeChanged="NavigationViewControl_DisplayModeChanged"
             Header="{x:Bind ((ContentControl)ViewModel.Selected).Content, Mode=OneWay}">
             <NavigationView.MenuItems>
@@ -78,6 +91,7 @@
                 <DataTemplate>
                     <Grid>
                         <TextBlock
+                            Foreground="Azure"
                             Text="{Binding}"
                             Style="{ThemeResource TitleTextBlockStyle}" />
                     </Grid>
@@ -88,10 +102,9 @@
                     DefaultHeader="{x:Bind ((ContentControl)ViewModel.Selected).Content, Mode=OneWay}">
                     <behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>
                         <DataTemplate>
-                            <Grid>
+                            <Grid Style="{StaticResource TileGridStyle}">
                                 <TextBlock
-                                    Text="{Binding}"
-                                    Style="{ThemeResource TitleTextBlockStyle}" />
+                                    Text="{Binding}" Style="{StaticResource HeaderTextStyle}" />
                             </Grid>
                         </DataTemplate>
                     </behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>
