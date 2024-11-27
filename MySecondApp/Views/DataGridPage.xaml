@@ -1,0 +1,21 @@
+﻿<Page
+    x:Class="MySecondApp.Views.DataGridPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:dxg="using:DevExpress.WinUI.Grid"
+    mc:Ignorable="d">
+
+    <Grid x:Name="ContentArea">
+        <dxg:GridControl ItemsSource="{x:Bind ViewModel.Source}" AutoGenerateColumns="False" NavigationStyle="Cell">
+            <dxg:GridControl.Columns>
+                <dxg:GridTextColumn FieldName="ProductName" Header="상품명" />
+                <dxg:GridComboBoxColumn FieldName="Country" Header="생산국" ItemsSource="{x:Bind ViewModel.Countries}" GroupIndex="0"/>
+                <dxg:GridSpinEditColumn FieldName="UnitPrice" Header="단가" Mask="c"/>
+                <dxg:GridTextColumn FieldName="Quantity" Header="수량"  SortOrder="Ascending" SortIndex="1"/>
+                <dxg:GridDateColumn FieldName="OrderDate" Header="주문일" SortOrder="Descending" SortIndex="0"/>
+            </dxg:GridControl.Columns>
+        </dxg:GridControl>
+    </Grid>
+</Page>

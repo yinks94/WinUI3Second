@@ -97,6 +97,8 @@ public partial class App : Application
                 services.AddTransient<ShellViewModel>();
                 services.AddTransient<LoginPage>();
                 services.AddTransient<LoginViewModel>();
+                services.AddTransient<DataGridPage>();
+                services.AddTransient<DataGridViewModel>();
 
                 // Configuration
                 services.Configure<LocalSettingsOptions>(context.Configuration.GetSection(nameof(LocalSettingsOptions)));

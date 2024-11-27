@@ -21,6 +21,7 @@ public class PageService : IPageService
         Configure<DataTableViewModel, DataTablePage>();
         Configure<SettingsViewModel, SettingsPage>();
         Configure<LoginViewModel, LoginPage>();
+        Configure<DataGridViewModel, DataGridPage>();
     }
 
     public Type GetPageType(string key)
